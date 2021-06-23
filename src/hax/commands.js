@@ -1,8 +1,8 @@
 var room = HBInit({
-	roomName: "RWHL Room", //change to rwhl room or something
+	roomName: "SBNL Room", //change to rwhl room or something
 	maxPlayers: 16,
 	noPlayer: false, // Remove host player (recommended!)
-	playerName : "RWHL Bot",
+	playerName : "SBNL Bot",
 	public : false
 });
 
@@ -40,7 +40,7 @@ function updateAdmins() {
 }
 
 room.onPlayerJoin = function(player) {
-  room.sendChat("Welcome "+player.name+" to the RWHL room!");
+  room.sendChat("Welcome "+player.name+" to the SBNL room!");
   updateAdmins();
 }
 
@@ -400,6 +400,6 @@ room.onGameTick = function(){
     ticks++;
 
     if (Number.isInteger(ticks/18000)){
-        room.sendAnnouncement("Come join the RWHL Discord! https://discord.gg/NqJsM5UkK4", null, 0x1e81b0, "normal", 1)
+        room.sendAnnouncement("Come join the SBNL Discord!", null, 0x1e81b0, "normal", 1)
     }
 }
