@@ -6,9 +6,6 @@ var room = HBInit({
 	public : false
 });
 
-room.setDefaultStadium("Big");
-room.setScoreLimit(0);
-room.setTimeLimit(5);
 room.setTeamsLock(true);
 
 var afkPlayers = [room.getPlayerList()[0].id];
@@ -388,6 +385,9 @@ room.onPlayerChat = function (player, message) {
         else if (["clear", "clearbans"].includes(split_message)){
             room.clearBans();
             room.sendChat("(DM) All bans have been cleared!", player.id)
+        }
+        else if (["boi"].includes(split_message)){
+            room.sendChat("LITTLE BOI")
         }
     }
 
