@@ -1,10 +1,4 @@
-var room = HBInit({
-	roomName: "SBNL Room", //change to rwhl room or something
-	maxPlayers: 16,
-	noPlayer: false, // Remove host player (recommended!)
-	playerName : "SBNL Bot",
-	public : false
-});
+var room = HBInit();
 
 room.setTeamsLock(true);
 
