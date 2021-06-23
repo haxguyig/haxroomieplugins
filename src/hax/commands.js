@@ -1,12 +1,10 @@
-var room = HBInit();
-
-room.pluginSpec = {
-  name: `hr/commands`,
-  author: `haxguyig`,
-  version: `1.0.0`,
-  config: {},
-  dependencies: []
-};
+var room = HBInit({
+	roomName: "RWHL Room", //change to rwhl room or something
+	maxPlayers: 16,
+	noPlayer: false, // Remove host player (recommended!)
+	playerName : "RWHL Bot",
+	public : false
+});
 
 room.setDefaultStadium("Big");
 room.setScoreLimit(0);
@@ -42,7 +40,7 @@ function updateAdmins() {
 }
 
 room.onPlayerJoin = function(player) {
-  room.sendChat("Welcome "+player.name+" to the SBNL room!");
+  room.sendChat("Welcome "+player.name+" to the RWHL room!");
   updateAdmins();
 }
 
@@ -265,7 +263,9 @@ room.onGameUnpause = function(byPlayer){
 
 room.onPlayerChat = function (player, message) {
     var split_message = message.split(" ");
-    if ([".afk"].includes(split_message[0])){
+    if (!([".", "!"].includes(split_message[0].charAt(0)))) return;
+    var split_message = split_message[0].substring(1);
+    if (["afk"].includes(split_message)){
             if (afkPlayers.includes(player.id)){
                 var index = afkPlayers.indexOf(player.id);
                 afkPlayers.splice(index, 1)
@@ -280,7 +280,7 @@ room.onPlayerChat = function (player, message) {
 
     if (player.admin)
     {
-        if ([".colors"].includes(split_message[0])){
+        if (["colors"].includes(split_message)){
                 var colors_dict = {};
                 var team_colors_dict =
                 {"huskies": {"angle": 60, "textcolor": 0x000000, "colors": [0xFF8484, 0xFDFDFD, 0x90EE90]},
@@ -315,7 +315,7 @@ room.onPlayerChat = function (player, message) {
             room.setTeamColors(colors_dict.color, team_colors.angle, team_colors.textcolor, team_colors.colors)
             room.sendChat("Ok, "+player.name+", changed the "+split_message[1]+" team uniform!")
         }
-        else if ([".switch", ".swap"].includes(split_message[0])){
+        else if (["switch", "swap"].includes(split_message)){
             room.stopGame();
             var players = room.getPlayerList();
             var arrayLength = players.length;
@@ -330,25 +330,25 @@ room.onPlayerChat = function (player, message) {
             }
             room.startGame();
         }
-        else if ([".re"].includes(split_message[0])){
+        else if (["re"].includes(split_message)){
             room.stopGame();
             room.startGame();
         }
-        else if ([".a", ".auto"].includes(split_message[0])){
+        else if (["a", "auto"].includes(split_message)){
             autoRand("auto");
         }
-        else if ([".r", ".rand"].includes(split_message[0])){
+        else if (["r", "rand"].includes(split_message)){
             autoRand("rand");
         }
-        else if ([".stop"].includes(split_message[0])){
+        else if (["stop"].includes(split_message)){
             room.stopGame();
             room.sendChat("(DM) Stopped the game.", player.id)
         }
-        else if ([".s", ".start"].includes(split_message[0])){
+        else if (["s", "start"].includes(split_message)){
             room.startGame();
             room.sendChat("(DM) Started the game.", player.id)
         }
-        else if ([".l", ".league"].includes(split_message[0])){
+        else if (["l", "league"].includes(split_message)){
             room.stopGame();
             room.setDefaultStadium("Big");
             room.setScoreLimit(0);
@@ -356,21 +356,21 @@ room.onPlayerChat = function (player, message) {
             room.setTeamsLock(true);
             room.startGame();
         }
-        else if ([".time"].includes(split_message[0])){
+        else if (["time"].includes(split_message)){
             var time = parseInt(split_message[1]);
             if (Number.isInteger(time)){
                 room.setTimeLimit(time);
             }
             room.sendChat("Time limit set to "+split_message[1]+".")
         }
-        else if ([".score"].includes(split_message[0])){
+        else if (["score"].includes(split_message)){
             var score = parseInt(split_message[1]);
             if (Number.isInteger(score)){
                 room.setScoreLimit(score);
             }
             room.sendChat("Score limit set to "+split_message[1]+".")
         }
-        else if ([".m", ".map"].includes(split_message[0])){
+        else if (["m", "map"].includes(split_message)){
             try{
                 if (split_message.length === 3){
                     room.setDefaultStadium(capitalize_Words(split_message[1])+" "+capitalize_Words(split_message[2]))
@@ -382,10 +382,10 @@ room.onPlayerChat = function (player, message) {
                 room.sendChat("(DM) That's not a default map!", player.id)
             }
         }
-        else if ([".p", ".pause"].includes(split_message[0])){
+        else if (["p", "pause"].includes(split_message)){
             room.pauseGame(!paused)
         }
-        else if ([".clear", ".clearbans"].includes(split_message[0])){
+        else if (["clear", "clearbans"].includes(split_message)){
             room.clearBans();
             room.sendChat("(DM) All bans have been cleared!", player.id)
         }
@@ -400,6 +400,6 @@ room.onGameTick = function(){
     ticks++;
 
     if (Number.isInteger(ticks/18000)){
-        room.sendAnnouncement("Come join the SBNL Discord!", null, 0x1e81b0, "normal", 1)
+        room.sendAnnouncement("Come join the RWHL Discord! https://discord.gg/NqJsM5UkK4", null, 0x1e81b0, "normal", 1)
     }
 }
