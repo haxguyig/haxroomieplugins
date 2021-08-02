@@ -1,5 +1,3 @@
-//var room = HBInit({roomName: "xd",playerName:"kys",noPlayer:false,public:false,maxPlayers:12});
-
 var room = HBInit()
 var WebHookURL = "https://discord.com/api/webhooks/871270071987765298/Rndt5Y2CA4IcOSa1uZLmuI-seMWF5dksPoFdTB6YxCA9oDBnnRH3EtlpB_7G7ji6ZOj5" //Buraya discord'da bildirim gönderilmesini istediğin kanal için oluşturduğun WebHook'un URL'ini gireceksin.
 
