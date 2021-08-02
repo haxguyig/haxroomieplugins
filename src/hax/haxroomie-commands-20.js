@@ -2,7 +2,7 @@ var room = HBInit()
 
 room.pluginSpec = {
   name: `hax/haxroomie-commands-20`,
-  author: `Name`,
+  author: `hux`,
   version: `1.0.0`,
   dependencies: [],
   // All times in the config are in seconds.
