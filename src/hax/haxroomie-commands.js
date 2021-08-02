@@ -1,7 +1,7 @@
 var room = HBInit()
 
 room.pluginSpec = {
-  name: `hax/haxroomie-commands-21`,
+  name: `hax/haxroomie-commands`,
   author: `hux`,
   version: `1.0.0`,
   dependencies: [],
