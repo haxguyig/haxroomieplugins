@@ -1,8 +1,4 @@
-var room = HBInit({
-                  	roomName: "My room",
-                  	maxPlayers: 16,
-                  	noPlayer: true // Remove host player (recommended!)
-                  })
+var room = HBInit()
 
 room.pluginSpec = {
   name: `hax/haxroomie-commands`,
@@ -447,7 +443,7 @@ room.onGameUnpause = function(byPlayer){
 room.onPlayerChat = function (player, message) {
     if (mutedPlayers.includes(player.id)) return false;
     var split_message_old = message.split(" ");
-//    var adminLogin = room.getConfig().adminLoginPasswords;
+    var adminLogin = room.getConfig().adminLoginPasswords;
     var split_message = split_message_old[0].substring(1).toLowerCase();
     if ("t" === split_message_old[0]){
             split_message_old.splice(0, 1)
